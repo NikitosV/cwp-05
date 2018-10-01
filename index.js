@@ -4,7 +4,8 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 const handlers = {
-    '/sum': sum
+    '/sum': sum,
+    '/mult' : mult
 };
 
 const server = http.createServer((req, res) => {
@@ -37,6 +38,12 @@ function getHandler(url) {
 
 function sum(req, res, payload, cb) {
     const result = { c: payload.a + payload.b };
+
+    cb(null, result);
+}
+
+function mult(req, res, payload, cb) {
+    const result = { c: payload.a * payload.b };
 
     cb(null, result);
 }
