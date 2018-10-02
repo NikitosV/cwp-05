@@ -3,8 +3,17 @@ const http = require('http');
 const hostname = '127.0.0.1';
 const port = 3000;
 
-const handlers = {
+const articles_handl = require('./handl/article');
+const comments_handl = require('./handl/comment');
 
+const handlers = {
+    '/api/articles/readall': articles_handl.readall,
+    '/api/articles/read': articles_handl.read,
+    '/api/articles/update': articles_handl.update,
+    '/api/articles/create': articles_handl.createArticle,
+    '/api/articles/delete': articles_handl.deleteArticle,
+    '/api/comments/create': comments_handl.createComment,
+    '/api/comments/delete': comments_handl.deleteComment,
 };
 
 const server = http.createServer((req, res) => {
