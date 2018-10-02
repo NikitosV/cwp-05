@@ -1,6 +1,14 @@
 const fs = require('fs');
 let articles = require("../articles.json");
 
+module.exports = {
+    readall,
+    read,
+    createArticle,
+    update,
+    deleteArticle
+};
+
 function readall(req, res, payload, cb) {
     cb(null, articles);
 }
