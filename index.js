@@ -16,6 +16,8 @@ const handlers = {
     '/api/comments/delete': comments_handl.deleteComment,
 };
 
+const log = "./log.txt";
+
 const server = http.createServer((req, res) => {
     parseBodyJson(req, (err, payload) => {
         const handler = getHandler(req.url);
@@ -55,14 +57,12 @@ function parseBodyJson(req, cb) {
         body.push(chunk);
     }).on('end', function() {
         body = Buffer.concat(body).toString();
-
+        Log(req.url + '\r\n' + body);
         let params = JSON.parse(body);
 
         cb(null, params);
     });
 }
-
-const log = "./log.txt";
 
 function Log(data) {
     ReadLog().then(
