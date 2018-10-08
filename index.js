@@ -61,3 +61,23 @@ function parseBodyJson(req, cb) {
         cb(null, params);
     });
 }
+
+const log = "./log.txt";
+
+function Log(data) {
+    ReadLog().then(
+        result => {
+            let date = new Date();
+            fs.writeFile(log,result + date.toLocaleString() + ": \r\n" + data + '\r\n', "utf8", function () {
+            });
+        })
+}
+
+function ReadLog() {
+    return new Promise((resolve) => {
+        fs.readFile(log, (err, data) => {
+            if (err) throw err;
+            resolve(data);
+        });
+    })
+}

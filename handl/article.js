@@ -63,7 +63,7 @@ function update(req, res, payload, cb) {
         ExistID(payload.id).then(
             exist => {
                 for (i = 0; i < articles.length; i++) {
-                    if (articles[i].id == payload.id) {
+                    if (articles[i].id === payload.id) {
                         if (payload.title !== undefined)
                             articles[i].title = payload.title;
                         if (payload.text !== undefined)
